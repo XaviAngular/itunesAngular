@@ -1,0 +1,27 @@
+<div class="row">
+ <div class="progress" *ngIf="cargando">
+      <div class="indeterminate"></div>
+  </div>
+  <div class="col s6 input-field">
+   
+    <input type="search" #searchBox (blur)="search(searchBox.value)" class="form-control input-lg well" placeholder="Type to search for artist..."><i class="material-icons prefix">search</i>
+  </div>
+</div>
+<div class="row">
+  <div *ngIf="searchResults.length > 0">
+    <h3>Search Results</h3>
+    
+    <div *ngFor="let artist of searchResults" class="col s4 m2 l2 center">
+      <img class="center" src="{{artist.artworkUrl100}}" title="{{artist.collectionName}}" alt="{{artist.collectionName}}" height="100" width="100">
+      <a class="trackName truncate tooltipped" >{{artist.trackName}}</a>
+      <audio controls>
+      <source src="{{artist.previewUrl}}" type="audio/mpeg">
+      Your browser does not support the audio element.
+      </audio>
+    </div>
+  </div>
+  <div class="col-xs-12" [ngClass]="{'col-sm-8': searchResults.length > 0 }">
+    <h3>{{ selectedArtist }}</h3>
+    <!-- App Album Component Goes Here -->
+  </div>
+</div>
